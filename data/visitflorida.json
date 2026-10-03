@@ -1,0 +1,111 @@
+{
+  "directory_url": "https://www.visitflorida.com/more/florida-now/",
+  "reviewed_at": "2026-10-03T00:00:00Z",
+  "coverage_note": "Curated subset of Florida Now directory locations, not a complete live import. Visit Florida returns HTTP 403 to this machine. Directory membership was checked via indexed public page text; coordinates and provider URLs are separately sourced and approximate.",
+  "cameras": [
+    {
+      "id": "cocoa-beach-pier",
+      "name": "Cocoa Beach Pier",
+      "city": "Cocoa Beach",
+      "lat": 28.3633,
+      "lon": -80.6057,
+      "provider": "IPCamLive",
+      "resolver": "iframe",
+      "url": "https://g1.ipcamlive.com/player/player.php?alias=63c2f8a2c31a7",
+      "operator_url": "https://g1.ipcamlive.com/player/player.php?alias=63c2f8a2c31a7",
+      "metadata_reference": "https://opencctv.org/cam/140046",
+      "location_note": "Catalog coordinates; approximate camera location."
+    },
+    {
+      "id": "englewood-beach",
+      "name": "Englewood Beach",
+      "city": "Englewood",
+      "lat": 26.926837,
+      "lon": -82.361671,
+      "provider": "EarthCam",
+      "resolver": "earthcam-player",
+      "url": "https://www.earthcam.com/usa/florida/portcharlotte/",
+      "operator_url": "https://www.earthcam.com/usa/florida/portcharlotte/",
+      "metadata_reference": "https://opencctv.org/cam/126916",
+      "location_note": "Catalog coordinates; approximate camera location."
+    },
+    {
+      "id": "watersound",
+      "name": "Watersound Beach Club",
+      "city": "Watersound",
+      "lat": 30.314,
+      "lon": -86.022,
+      "provider": "EarthCam",
+      "resolver": "earthcam-player",
+      "url": "https://www.earthcam.com/usa/florida/watersound/",
+      "operator_url": "https://www.earthcam.com/usa/florida/watersound/",
+      "metadata_reference": "https://opencctv.org/cam/127081",
+      "location_note": "Catalog coordinates; approximate camera location."
+    },
+    {
+      "id": "palatka",
+      "name": "Palatka Riverfront",
+      "city": "Palatka",
+      "lat": 29.6487882,
+      "lon": -81.6372111,
+      "provider": "EarthCam",
+      "resolver": "earthcam-player",
+      "url": "https://www.earthcam.com/usa/florida/palatka/",
+      "operator_url": "https://www.earthcam.com/usa/florida/palatka/",
+      "metadata_reference": "https://opencctv.org/cam/328482",
+      "location_note": "Catalog coordinates; approximate camera location."
+    },
+    {
+      "id": "southernmost-point",
+      "name": "Southernmost Point - Key West",
+      "city": "Key West",
+      "lat": 24.5464,
+      "lon": -81.7983,
+      "provider": "IPCamLive",
+      "resolver": "iframe",
+      "url": "https://g1.ipcamlive.com/player/player.php?alias=6481fd870fbe0",
+      "operator_url": "https://g1.ipcamlive.com/player/player.php?alias=6481fd870fbe0",
+      "metadata_reference": "https://opencctv.org/cam/140041",
+      "location_note": "Catalog coordinates; approximate camera location."
+    },
+    {
+      "id": "mallory-square",
+      "name": "Mallory Square - Key West",
+      "city": "Key West",
+      "lat": 24.5601,
+      "lon": -81.8076,
+      "provider": "IPCamLive",
+      "resolver": "iframe",
+      "url": "https://g1.ipcamlive.com/player/player.php?alias=5a04b61ddc498",
+      "operator_url": "https://g1.ipcamlive.com/player/player.php?alias=5a04b61ddc498",
+      "metadata_reference": "https://opencctv.org/cam/140042",
+      "location_note": "Catalog coordinates; approximate camera location."
+    },
+    {
+      "id": "pensacola-beach",
+      "name": "Pensacola Beach - South View",
+      "city": "Pensacola Beach",
+      "lat": 30.332,
+      "lon": -87.1465,
+      "provider": "IPCamLive",
+      "resolver": "iframe",
+      "url": "https://g1.ipcamlive.com/player/player.php?alias=5b4f87e7a0858",
+      "operator_url": "https://g1.ipcamlive.com/player/player.php?alias=5b4f87e7a0858",
+      "metadata_reference": "https://opencctv.org/cam/140048",
+      "location_note": "Catalog coordinates; approximate camera location."
+    },
+    {
+      "id": "sebastian-inlet",
+      "name": "Sebastian Inlet - North Jetty",
+      "city": "Sebastian Inlet",
+      "lat": 27.85723,
+      "lon": -80.44762,
+      "provider": "Sebastian Inlet District / Erdman Video Systems",
+      "resolver": "image",
+      "url": "https://video-monitoring.com/beachcams/sebastian/sstn/s1.jpg",
+      "operator_url": "https://www.sebastianinletcam.com/",
+      "metadata_reference": "https://www.floridastateparks.org/learn/webcam-watch-jetty-and-surf",
+      "location_note": "Approximate inlet webcam location, shared by multiple views."
+    }
+  ]
+}

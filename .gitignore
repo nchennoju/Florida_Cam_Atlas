@@ -1,0 +1,6 @@
+__pycache__/
+.venv/
+*.log
+test-results/
+
+data/deflock-cache.json

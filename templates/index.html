@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Space Coast · Camera Atlas</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/hls.js@1.6.13/dist/hls.min.js"></script>
+  <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+<script defer src="{{ url_for('static', filename='community.js') }}"></script>
+</head>
+<body>
+<header><div><span class="eyebrow">SPACE COAST / FLORIDA</span><h1>Camera Atlas<span class="dot">.</span></h1></div><button id="community-toggle" aria-expanded="false" aria-controls="community-panel">Community posts</button></header>
+<main>
+  <aside>
+    <section class="controls"><span class="eyebrow">EXPLORE YOUR AREA</span><h2>Eyes on the coast</h2><p id="location">Locating your supplied Cocoa Beach address…</p>
+      <div class="control-row"><label for="radius">Search radius</label><select id="radius"><option value="5">5 miles</option><option value="10">10 miles</option><option value="20" selected>20 miles</option><option value="50">50 miles</option><option value="100">100 miles</option></select></div>
+      <div class="buttons"><button id="locate">Use my location</button><button id="refresh" class="secondary">Refresh</button></div>
+      <p class="hint">Drag the blue pin to search another area. Click any camera to open its feed.</p>
+      <fieldset class="source-toggles"><legend>Camera sets</legend>
+        <label class="source-toggle"><input type="checkbox" id="toggle-fl511" checked><span class="swatch fl511"></span><span>FL511<small id="source-status-fl511">Waiting…</small></span></label>
+        <label class="source-toggle"><input type="checkbox" id="toggle-opencctv" checked><span class="swatch opencctv"></span><span>OpenCCTV Florida<small id="source-status-opencctv">Waiting…</small></span></label>
+        <label class="source-toggle"><input type="checkbox" id="toggle-visitflorida" checked><span class="swatch visitflorida"></span><span>Visit Florida<small id="source-status-visitflorida">Curated directory subset</small></span></label>
+        <label class="source-toggle"><input type="checkbox" id="toggle-deflock" checked><span class="swatch deflock"></span><span>DeFlock / OSM ALPR<small id="source-status-deflock">Locations and directions</small></span></label>
+      </fieldset><p class="hint">Pink arrows: reported ALPR headings, not coverage. A dot alone means no single heading is available. Select for direction details. <a href="https://deflock.org/" target="_blank" rel="noopener noreferrer">About DeFlock</a></p>
+      <p class="hint source-note">Overlapping sets use concentric markers. Visit Florida is a curated directory subset; automatic directory access is currently blocked.</p>
+      <label class="search-label" for="filter">Find a camera</label><input id="filter" type="search" placeholder="Road, camera name or county…">
+    </section>
+    <div id="catalog-status" role="status" aria-live="polite">Loading camera catalog…</div>
+    <div id="camera-list" aria-label="Nearby cameras"></div>
+    <footer>Sources: <a href="https://fl511.com/cctv" target="_blank" rel="noopener noreferrer">FL511</a> · <a href="https://opencctv.org/" target="_blank" rel="noopener noreferrer">OpenCCTV</a> · <a href="https://www.visitflorida.com/more/florida-now/" target="_blank" rel="noopener noreferrer">Visit Florida</a><br>Feed availability can change. Images and video are labeled separately.</footer>
+  </aside>
+  <div class="map-area"><div id="map" aria-label="Satellite map of nearby cameras"></div><div class="map-label"><span class="live-dot"></span> SATELLITE VIEW <span>·</span> SELECT A CAMERA</div>
+    <section id="player-panel" hidden aria-label="Camera player"><div class="player-heading"><div><span class="eyebrow" id="player-source">CAMERA FEED</span><h2 id="camera-title"></h2></div><button id="close" aria-label="Close player">×</button></div>
+      <video id="video" controls muted autoplay playsinline></video>
+      <img id="snapshot" hidden alt="Selected camera snapshot" referrerpolicy="no-referrer">
+      <iframe id="embed" hidden title="Public camera player" sandbox="allow-scripts allow-same-origin allow-presentation" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <p id="player-status" role="status" aria-live="polite"></p>
+      <div class="player-actions"><button id="retry">Reconnect</button><a id="original" target="_blank" rel="noopener noreferrer">View on FL511 ↗</a></div><p id="camera-detail" class="hint"></p>
+    </section>
+  </div>
+  <section id="community-panel" hidden aria-label="Snapchat community posts">
+    <div class="player-heading"><div><span class="eyebrow">SNAPCHAT / PUBLIC POSTS</span><h2>Community posts</h2></div><button id="community-close" aria-label="Close community posts">×</button></div>
+    <p>Public posts add context alongside the cameras. They are not live feeds or an automatic Snap Map layer. Check dates in each post.</p>
+    <a href="https://www.snapchat.com/explore/" target="_blank" rel="noopener noreferrer">Find public posts on Snapchat ↗</a>
+    <p class="hint">Snap Map is available in the mobile app. For web content, choose Share → Embed → Copy code on Snapchat, then paste it below.</p>
+    <form id="community-form">
+      <label for="community-title">Label (optional)</label><input id="community-title" maxlength="100" placeholder="e.g. Cocoa Beach surf">
+      <label for="community-code">Snapchat embed code or embed URL</label><textarea id="community-code" required maxlength="30000" rows="3" placeholder="Paste the copied embed code here"></textarea>
+      <button type="submit">Save post</button>
+    </form>
+    <p id="community-status" role="status" aria-live="polite"></p>
+    <div id="community-list" aria-label="Saved public posts"></div>
+    <div id="community-view" hidden><h3 id="community-view-title"></h3><iframe id="community-frame" title="Snapchat public post" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" allow="autoplay; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><p class="hint">If this post expires or cannot play here, open it on Snapchat.</p><a id="community-original" target="_blank" rel="noopener noreferrer">Open on Snapchat ↗</a><button id="community-stop" class="secondary">Stop post</button></div>
+    <p class="hint">Saved links stay in this browser. Closing the panel stops its player. Camera controls work independently.</p>
+  </section>
+</main>
+<noscript>This map requires JavaScript.</noscript>
+</body></html>
